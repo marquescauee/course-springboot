@@ -51,7 +51,9 @@ public class User implements Serializable {
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		if(id > 0) {
+			this.id = id;
+		}
 	}
 
 	public String getName() {
@@ -59,7 +61,9 @@ public class User implements Serializable {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if(!name.isBlank()) {
+			this.name = name;
+		}
 	}
 
 	public String getEmail() {
@@ -67,7 +71,9 @@ public class User implements Serializable {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		if(!email.isBlank()) {
+			this.email = email;
+		}
 	}
 
 	public String getPhone() {
@@ -75,7 +81,9 @@ public class User implements Serializable {
 	}
 
 	public void setPhone(String phone) {
-		this.phone = phone;
+		if(!phone.isBlank()) {
+			this.phone = phone;
+		}
 	}
 
 	public String getPassword() {
@@ -83,7 +91,9 @@ public class User implements Serializable {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		if(!password.isBlank()) {
+			this.password = password;
+		}
 	}
 
 	@Override

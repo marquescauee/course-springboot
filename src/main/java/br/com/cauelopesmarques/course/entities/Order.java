@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import br.com.cauelopesmarques.course.entities.enums.OrderStatus;
 
 @Entity
 @Table(name= "tb_order")
@@ -27,6 +30,9 @@ public class Order implements Serializable {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
 	
+	@Column(name = "ORDER_STATUS")
+	private Integer os;
+	
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private User client;
@@ -34,9 +40,10 @@ public class Order implements Serializable {
 	public Order() {
 	}
 
-	public Order(Long id, Instant moment, User client) {
+	public Order(Long id, Instant moment, OrderStatus os, User client) {
 		this.id = id;
 		this.moment = moment;
+		setOs(os);
 		this.client = client;
 	}
 
@@ -45,7 +52,9 @@ public class Order implements Serializable {
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		if(id > 0) {
+			this.id = id;
+		}
 	}
 
 	public Instant getMoment() {
@@ -53,7 +62,9 @@ public class Order implements Serializable {
 	}
 
 	public void setMoment(Instant moment) {
-		this.moment = moment;
+		if(moment != null) {
+			this.moment = moment;
+		}
 	}
 
 	public User getClient() {
@@ -61,7 +72,19 @@ public class Order implements Serializable {
 	}
 
 	public void setClient(User client) {
-		this.client = client;
+		if(client != null) {
+			this.client = client;
+		}
+	}
+	
+	public OrderStatus getOs() {
+		return OrderStatus.valueOf(os);
+	}
+
+	public void setOs(OrderStatus os) {
+		if(os != null) {
+			this.os = os.getCode();
+		}
 	}
 
 	@Override
