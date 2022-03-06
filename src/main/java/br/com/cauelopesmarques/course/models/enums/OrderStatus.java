@@ -1,4 +1,4 @@
-package br.com.cauelopesmarques.course.entities.enums;
+package br.com.cauelopesmarques.course.models.enums;
 
 public enum OrderStatus {
 

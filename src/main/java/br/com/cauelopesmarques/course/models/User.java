@@ -1,4 +1,4 @@
-package br.com.cauelopesmarques.course.entities;
+package br.com.cauelopesmarques.course.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;

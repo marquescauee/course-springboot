@@ -1,4 +1,4 @@
-package br.com.cauelopesmarques.course.entities;
+package br.com.cauelopesmarques.course.models;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import br.com.cauelopesmarques.course.entities.enums.OrderStatus;
+import br.com.cauelopesmarques.course.models.enums.OrderStatus;
 
 @Entity
 @Table(name= "tb_order")
