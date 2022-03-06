@@ -23,4 +23,12 @@ public class UserService {
 		Optional<User> obj = ur.findById(id);
 		return obj.get();
 	}
+	
+	public User insert(User user) {
+		return ur.save(user);
+	}
+	
+	public void delete(Long id) {
+		ur.deleteById(id);
+	}
 }
