@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import br.com.cauelopesmarques.course.models.Category;
 import br.com.cauelopesmarques.course.models.Order;
+import br.com.cauelopesmarques.course.models.OrderItem;
 import br.com.cauelopesmarques.course.models.Product;
 import br.com.cauelopesmarques.course.models.User;
 import br.com.cauelopesmarques.course.models.enums.OrderStatus;
 import br.com.cauelopesmarques.course.repositories.CategoryRepository;
+import br.com.cauelopesmarques.course.repositories.OrderItemRepository;
 import br.com.cauelopesmarques.course.repositories.OrderRepository;
 import br.com.cauelopesmarques.course.repositories.ProductRepository;
 import br.com.cauelopesmarques.course.repositories.UserRepository;
@@ -33,6 +35,9 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private ProductRepository pr;
+	
+	@Autowired
+	private OrderItemRepository oir;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -66,5 +71,12 @@ public class TestConfig implements CommandLineRunner {
 		p5.getCategories().add(cat2);
 		
 		pr.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+		
+		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+		
+		oir.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 	}
 }
