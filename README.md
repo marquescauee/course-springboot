@@ -5,4 +5,4 @@
 - Java
 - JPA/Hibernate
 - Spring Boot
-- MySQL
+- PostgreSQL
